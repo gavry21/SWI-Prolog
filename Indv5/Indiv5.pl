@@ -16,6 +16,8 @@ check(1):-menu2.
 check(2):-menu3.
 check(3):-menu4.
 
+
+
 menu2:-repeat,
     write('База данных о шиноби-деревнях'),nl,nl,
     write('1 - Посмотреть данные о деревнях'),nl,
@@ -46,13 +48,16 @@ menu4:-repeat,
     X<5,
     process2(X).
 
+
+
+
 process(1):-viewdata.
 process(2):-addvillage.
 process(3):-deletevillage.
 process(4):-dbsave.
 
 process1(1):-viewdata1.
-process1(2):-addtech.
+%process1(2):-addtech.
 process1(3):-deletetech.
 process1(4):-dbsave.
 
@@ -67,22 +72,18 @@ viewdata1:- tech(_,X),
     write("Название: "), write(X),nl,
     write('------------------------------------'),nl,fail.
 
-viewdata2:-tech(T,Y),village(Z,D),character(X,T,D),
+viewdata2:-tech(T,Y),village(Z,D), character(X,T,D),
     write("Имя: "), write(X),nl,
     write("Техника: "), write(Y),nl,
     write("Деревня: "), write(Z),nl,
     write('------------------------------------'),nl,fail.
 
 
-%adddata:- village(X,Y), asserta(village(X,Y)).
-%adddata:-!.
 
-%addcharacter:- character(X,Y,Z), asserta(character(X,Y,Z)).
-%addcharacter:-!.
+adddata:- village(X,Y), asserta(village(X,Y)).
+adddata:-!.
 
-%addtech:- tech(X,Y), asserta(tech(X,Y)).
-%addtech:-!.
-
+means(X,X).
 
 viewdata:- village(X,_),
     write("Название: "), write(X),nl,
@@ -94,20 +95,19 @@ addvillage:-write("Добавить деревню"),nl,nl,
     write("id: "), read(Y),
     assertz(village(X,Y)).
 
-addtech:-write("Добавить технику"),nl,nl,
-    repeat, write("Название: "),
-    read(X),
-    write("id: "), read(Y),
-    assertz(village(X,Y)).
-
 addcharacter:-
     write("Добавить персонажа"),nl,nl,
     write("Имя: "),read(X),
-    write("Название деревни: "), read(Y),not(village(Y,D)),
-    write("Такой деревни нет");
-    write("Название техники: "), read(Z),not(tech(T,Z)),
-    write("Такой техники нет");
-    assertz(character(X,T,D)).
+    write("деревня: "), read(Y),
+    Y1 is Y,
+    write("техника"),read(Z),
+    Z1 is Z,
+    check(Y1,Z1,F), F=0,
+    assertz(character(X,Z,Y)),
+    write(X);
+    write("Такой техники нет").
+
+check(X,Y,F):- village(_,X), tech(Y,_),!, F is 0;F is 1.
 
 deletevillage:- write('Удалить деревню'),nl,nl,
     write('Напишите название деревни: '),

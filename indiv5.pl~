@@ -74,8 +74,8 @@ viewdata2:-tech(T,Y),village(Z,D),character(X,T,D),
     write('------------------------------------'),nl,fail.
 
 
-%adddata:- village(X,Y), asserta(village(X,Y)).
-%adddata:-!.
+adddata:- village(X,Y), asserta(village(X,Y)).
+adddata:-!.
 
 %addcharacter:- character(X,Y,Z), asserta(character(X,Y,Z)).
 %addcharacter:-!.
