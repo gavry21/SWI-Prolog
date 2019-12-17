@@ -1,5 +1,5 @@
 %пятая идивидуальная
-run:- consult('C:/Users/Sofia/Downloads/mydata.pl'),
+run:- consult('C:/Users/Sofia/Desktop/Новая папка/SWI-Prolog/Indv5/mydata.pl'),
     retractall(village/2),retractall(tech/2), retractall(character/3),
     menu.
 
@@ -21,9 +21,9 @@ check(3):-menu4.
 menu2:-repeat,
     write('База данных о шиноби-деревнях'),nl,nl,
     write('1 - Посмотреть данные о деревнях'),nl,
-   % write('2 - Добавить данные в таблицу'),nl,
-    write('2 - Удалить данные из таблицы'),nl,
-    write('3 - Сохранить базу в файл'),nl,
+    write('2 - Добавить данные в таблицу'),nl,
+    write('3 - Удалить данные из таблицы'),nl,
+    write('4 - Сохранить базу в файл'),nl,
     read(X),
     X<5,
     process(X).
@@ -138,11 +138,11 @@ deletecharacter:- write('Удалить деревню'),nl,nl,
     read(X),
     retract(character(X,_,_)),
     write('character deleted'),nl,nl,
-    tell('C:/Users/Sofia/Downloads/mydata.pl'), listing(village),
+    tell('C:/Users/Sofia/Desktop/Новая папка/SWI-Prolog/Indv5/mydata.pl'), listing(village),
     listing(character),listing(tech),
     told, write('Таблица обновлена'),nl.
 
 
-dbsave:- tell('C:/Users/Sofia/Downloads/mydata.pl'), listing(village),listing(tech),listing(character),
+dbsave:- tell('C:/Users/Sofia/Desktop/Новая папка/SWI-Prolog/Indv5/mydata.pl'), listing(village),listing(tech),listing(character),
     told, write('База сохранена'),nl,fail.
 

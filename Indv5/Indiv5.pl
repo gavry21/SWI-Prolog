@@ -1,5 +1,5 @@
 %пятая идивидуальная
-run:- consult('C:/Users/Sofia/Downloads/mydata.pl'),
+run:- consult('C:/Users/Sofia/Desktop/Новая папка/SWI-Prolog/Indv5/mydata.pl'),
     retractall(village/2),retractall(tech/2), retractall(character/3),
     menu.
 
@@ -133,16 +133,16 @@ deletetech:- write('Удалить технику'),nl,nl,
     listing(character),listing(tech),
     told, write('Таблица обновлена'),nl.
 
-deletecharacter:- write('Удалить деревню'),nl,nl,
+deletecharacter:- write('Удалить персонажа'),nl,nl,
     write('Напишите имя персонажа: '),
     read(X),
     retract(character(X,_,_)),
     write('character deleted'),nl,nl,
-    tell('C:/Users/Sofia/Downloads/mydata.pl'), listing(village),
+    tell('C:/Users/Sofia/Desktop/Новая папка/SWI-Prolog/Indv5/mydata.pl'), listing(village),
     listing(character),listing(tech),
     told, write('Таблица обновлена'),nl.
 
 
-dbsave:- tell('C:/Users/Sofia/Downloads/mydata.pl'), listing(village),listing(tech),listing(character),
+dbsave:- tell('C:/Users/Sofia/Desktop/Новая папка/SWI-Prolog/Indv5/mydata.pl'), listing(village),listing(tech),listing(character),
     told, write('База сохранена'),nl,fail.
 
